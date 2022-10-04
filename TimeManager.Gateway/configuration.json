@@ -1,0 +1,17 @@
+{
+  "ReRoutes": [
+    {
+      "DownstreamPathTemplate": "/api/{type}/{method}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8090
+        }
+      ],
+      "UpstreamPath": "/data/{type}/{method}",
+      "UpstreamHttpMethod": [ "POST", "DELETE" ]
+    }
+  ],
+  "GlobalConfiguration": {}
+}

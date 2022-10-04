@@ -7,6 +7,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Configuration.AddJsonFile("configuration.json");
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
