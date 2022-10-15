@@ -18,8 +18,6 @@ builder.Services.AddOcelot(builder.Configuration);
 
 var app = builder.Build();
 
-await app.UseOcelot();
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -32,5 +30,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseOcelot().Wait();
 
 app.Run();

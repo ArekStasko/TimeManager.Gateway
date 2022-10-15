@@ -1,20 +1,20 @@
 {
-  "ReRoutes": [
+  "Routes": [
     {
-      "UpstreamPath": "/api/{type}/{method}",
+      "UpstreamPathTemplate": "/api/{type}/{method}",
       "UpstreamHttpMethod": [ "POST", "DELETE" ],
 
+      "DownstreamPathTemplate": "/api/{type}/{method}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "timemanager.data",
-          "Port": 80
+          "Port": 90
         }
-      ],
-      "DownstreamPathTemplate": "/api/{type}/{method}"
+      ]
     }
   ],
-  "GlobalConfiguration": {
-    "BaseUrl": "http://localhost:8090"
-  }
+  "GlobalConfiguration": {}
 }
+
+//  "BaseUrl": "http://localhost:8070"
