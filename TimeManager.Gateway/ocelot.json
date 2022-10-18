@@ -9,12 +9,10 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "timemanager.data",
-          "Port": 90
+          "Port": 80
         }
       ]
     }
   ],
   "GlobalConfiguration": {}
 }
-
-//  "BaseUrl": "http://localhost:8070"
