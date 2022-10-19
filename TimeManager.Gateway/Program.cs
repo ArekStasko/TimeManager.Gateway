@@ -1,5 +1,6 @@
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
+using TimeManager.Gateway.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,6 +32,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.UseOcelot().Wait();
+app.UseOcelot(new Middleware()).Wait();
 
 app.Run();
