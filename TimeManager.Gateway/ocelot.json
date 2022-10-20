@@ -1,7 +1,7 @@
 {
   "Routes": [
     {
-      "UpstreamPathTemplate": "/api/{type}/{method}",
+      "UpstreamPathTemplate": "/data/{type}/{method}",
       "UpstreamHttpMethod": [ "POST", "DELETE" ],
 
       "DownstreamPathTemplate": "/api/{type}/{method}",
@@ -13,6 +13,19 @@
         }
       ]
     },
+    {
+      "UpstreamPathTemplate": "/idp/auth/{methodType}/{method}",
+      "UpstreamHttpMethod": [ "POST" ],
+
+      "DownstreamPathTemplate": "/api/auth/{methodType}/{method}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "timemanager.idp",
+          "Port": 80
+        }
+      ]
+    }
   ],
   "GlobalConfiguration": {}
 }
