@@ -16,6 +16,9 @@ builder.Configuration
 
 builder.Services.AddOcelot(builder.Configuration);
 
+var authProviderKey = "auth-key";
+builder.Services.AddAuthentication().AddJwtBearer(authProviderKey, x => { });
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
