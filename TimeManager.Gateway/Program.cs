@@ -1,5 +1,8 @@
+using Microsoft.IdentityModel.Tokens;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
+using TimeManager.Gateway.middleware;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,10 +18,10 @@ builder.Configuration
     .AddEnvironmentVariables();
 
 builder.Services.AddOcelot(builder.Configuration);
-
+/*
 var authProviderKey = "auth-key";
-builder.Services.AddAuthentication().AddJwtBearer(authProviderKey, x => { });
-
+builder.Services.AddAuthentication(authProviderKey);
+*/
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -34,6 +37,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.UseOcelot().Wait();
+app.UseOcelot(new CustomMiddleware()).Wait();
 
 app.Run();

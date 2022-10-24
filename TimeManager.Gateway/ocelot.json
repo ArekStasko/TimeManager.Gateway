@@ -11,12 +11,9 @@
           "Host": "timemanager.data",
           "Port": 80
         }
-      ],
+      ]
 
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "auth-key",
-        "AllowedScopes": []
-      }
+
     },
     {
       "UpstreamPathTemplate": "/idp/{type}/{methodType}/{method}",
@@ -29,19 +26,7 @@
           "Host": "timemanager.idp",
           "Port": 80
         }
-      ],
-
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "auth-key",
-        "AllowedScopes": []
-      },
-
-      "AnonymousRoutes": {
-        "Routes": [
-          "/idp/Auth/Register/register",
-          "/idp/Auth/Login/login"
-        ]
-      }
+      ]
 
     }
   ],
