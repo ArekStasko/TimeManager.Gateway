@@ -2,6 +2,7 @@
 using RestSharp;
 using System.Text;
 using System.Web;
+using TimeManager.Gateway.Data.Response;
 
 namespace TimeManager.Gateway.middleware
 {
@@ -19,7 +20,7 @@ namespace TimeManager.Gateway.middleware
         {
             try
             {
-                string endpoint = "http://timemanager.idp:80/api/Auth/IsAuth/isauth";
+                string endpoint = "http://timemanager.idp:80/api/token/verifytoken/verifytoken";
                 var client = new RestClient(endpoint);
 
                 string token = context.Request.Query["token"].ToString();
@@ -27,8 +28,10 @@ namespace TimeManager.Gateway.middleware
                 var request = new RestRequest();
                 
                 request.AddParameter("token", token);
-                int result = client.Post<int>(request);
-                
+                Response<int> result = client.Post<Response<int>>(request);
+
+                context.Request.QueryString.Add("userId", result.Data.ToString());
+
                 await next.Invoke();
             }
             catch (Exception ex)
