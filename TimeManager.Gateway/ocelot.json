@@ -11,9 +11,15 @@
           "Host": "timemanager.data",
           "Port": 80
         }
-      ]
+      ],
 
-
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      }
     },
     {
       "UpstreamPathTemplate": "/idp/{type}/{methodType}/{method}",
@@ -26,8 +32,15 @@
           "Host": "timemanager.idp",
           "Port": 80
         }
-      ]
+      ],
 
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      }
     }
   ],
   "GlobalConfiguration": {}

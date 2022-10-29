@@ -2,6 +2,7 @@
 using RestSharp;
 using System.Text;
 using System.Web;
+using TimeManager.Gateway.data.Token;
 using TimeManager.Gateway.Data.Response;
 
 namespace TimeManager.Gateway.middleware
@@ -26,8 +27,10 @@ namespace TimeManager.Gateway.middleware
                 string token = context.Request.Query["token"].ToString();
                 
                 var request = new RestRequest();
-                
-                request.AddParameter("token", token);
+
+                var tokenDTO = new TokenDTO() { token = token};
+
+                request.AddJsonBody(tokenDTO);
                 Response<int> result = client.Post<Response<int>>(request);
 
                 context.Request.QueryString.Add("userId", result.Data.ToString());
