@@ -1,5 +1,7 @@
-﻿using Ocelot.Middleware;
+﻿using Ocelot.Authorization;
+using Ocelot.Middleware;
 using RestSharp;
+using System.Net;
 using System.Text;
 using System.Web;
 using TimeManager.Gateway.data.Token;
@@ -7,9 +9,9 @@ using TimeManager.Gateway.Data.Response;
 
 namespace TimeManager.Gateway.middleware
 {
-    public class CustomMiddleware : OcelotPipelineConfiguration
+    public class AuthMiddleware : OcelotPipelineConfiguration
     {
-        public CustomMiddleware()
+        public AuthMiddleware()
         {
             AuthenticationMiddleware = async (ctx, next) =>
             {
@@ -31,15 +33,21 @@ namespace TimeManager.Gateway.middleware
                 var tokenDTO = new TokenDTO() { token = token};
 
                 request.AddJsonBody(tokenDTO);
-                Response<int> result = client.Post<Response<int>>(request);
+                Response<bool> result = client.Post<Response<bool>>(request);
 
-                context.Request.QueryString.Add("userId", result.Data.ToString());
+
+                if (!result.Data)
+                {
+                    context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+                    context.Response.WriteAsync("Unauthorized error !");
+                    context.Items.SetError(new UnauthorizedError("Unauthorized error !"));
+                    return;
+                }
 
                 await next.Invoke();
             }
             catch (Exception ex)
             {
-
                 throw new Exception(ex.Message);
             }
         }

@@ -18,10 +18,7 @@ builder.Configuration
     .AddEnvironmentVariables();
 
 builder.Services.AddOcelot(builder.Configuration);
-/*
-var authProviderKey = "auth-key";
-builder.Services.AddAuthentication(authProviderKey);
-*/
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -37,6 +34,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.UseOcelot(new CustomMiddleware()).Wait();
+app.UseOcelot(new AuthMiddleware()).Wait();
 
 app.Run();

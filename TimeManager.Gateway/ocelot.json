@@ -22,10 +22,10 @@
       }
     },
     {
-      "UpstreamPathTemplate": "/idp/{type}/{methodType}/{method}",
+      "UpstreamPathTemplate": "/idp/token/{methodType}/{method}",
       "UpstreamHttpMethod": [ "POST" ],
 
-      "DownstreamPathTemplate": "/api/{type}/{methodType}/{method}",
+      "DownstreamPathTemplate": "/api/token/{methodType}/{method}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
