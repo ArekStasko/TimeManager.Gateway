@@ -5,7 +5,6 @@ using System.Net;
 using System.Text;
 using System.Web;
 using TimeManager.Gateway.data.Token;
-using TimeManager.Gateway.Data.Response;
 
 namespace TimeManager.Gateway.middleware
 {
@@ -27,16 +26,13 @@ namespace TimeManager.Gateway.middleware
                 var client = new RestClient(endpoint);
 
                 string token = context.Request.Query["token"].ToString();
-                
                 var request = new RestRequest();
-
-                var tokenDTO = new TokenDTO() { token = token};
+                var tokenDTO = new TokenDTO() { token = token };
 
                 request.AddJsonBody(tokenDTO);
-                Response<bool> result = client.Post<Response<bool>>(request);
+                bool result = client.Post<bool>(request);
 
-
-                if (!result.Data)
+                if (!result)
                 {
                     context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
                     context.Response.WriteAsync("Unauthorized error !");
