@@ -22,6 +22,27 @@
       }
     },
     {
+      "UpstreamPathTemplate": "/ProcEngine/{type}/{method}",
+      "UpstreamHttpMethod": [ "POST" ],
+
+      "DownstreamPathTemplate": "/pe/{type}/{method}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "timemanager.processingengine",
+          "Port": 80
+        }
+      ],
+
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      }
+    },
+    {
       "UpstreamPathTemplate": "/idp/token/{methodType}/{method}",
       "UpstreamHttpMethod": [ "POST" ],
 
