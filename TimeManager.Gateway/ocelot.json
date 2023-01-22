@@ -1,6 +1,7 @@
 {
   "Routes": [
     {
+      "UpstreamHost": "localhost:8081",
       "UpstreamPathTemplate": "/data/{type}/{method}",
       "UpstreamHttpMethod": [ "POST", "DELETE" ],
 
@@ -22,6 +23,7 @@
       }
     },
     {
+      "UpstreamHost": "localhost:443",
       "UpstreamPathTemplate": "/ProcEngine/{type}/{method}",
       "UpstreamHttpMethod": [ "POST" ],
 
@@ -43,6 +45,7 @@
       }
     },
     {
+      "UpstreamHost": "localhost:443",
       "UpstreamPathTemplate": "/idp/token/{methodType}/{method}",
       "UpstreamHttpMethod": [ "POST" ],
 
