@@ -1,7 +1,7 @@
 {
   "Routes": [
     {
-      "UpstreamHost": "localhost:8081",
+      "UpstreamHost": "localhost:8070",
       "UpstreamPathTemplate": "/data/{type}/{method}",
       "UpstreamHttpMethod": [ "POST", "DELETE" ],
 
